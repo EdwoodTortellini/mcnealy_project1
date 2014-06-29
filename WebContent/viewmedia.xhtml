@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="title">View Media</ui:insert></title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:selectOneMenu value="#{viewMedia.type}">
+			<f:selectItem itemValue="Book" />
+			<f:selectItem itemValue="EBook" />
+			<f:selectItem itemValue="Music" />
+			<f:selectItem itemValue="Video" />
+			<f:ajax listener="#{viewMedia.selectByType}" render="txtResult" />
+		</h:selectOneMenu>
+		<br />
+		<h:outputText id="txtResult" value="#{viewMedia.result}" />
+		<br/>
+		<h:selectOneMenu value="media">
+			<f:selectItem itemValue="#{viewMedia.mediaList}"/>
+		</h:selectOneMenu>
+
+	</h:form>
+</h:body>
+</html>
