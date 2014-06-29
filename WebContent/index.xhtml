@@ -7,70 +7,61 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title><ui:insert name="title">Library</ui:insert></title>
-	<h:outputScript library="js" name="jquery.js" target="body" />
-	<h:outputScript library="js" name="scriptstuff.js" target="body" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript"
+		src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<h:outputScript library="js" name="morescripts.js" target="body" />
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
-	<h2>Media Library</h2>
-	<a href="addmedia.xhtml">Add Media</a>
-	<br />
-	<a href="viewmedia.xhtml">View Media</a>
-	<br />
-	<button id="addMediaButton">Add Media</button>
-	<br />
+	<div id="wrapper">
+		<div id="left"></div>
+		<div id="main">
+			<h2>Media Library</h2>
+			<a href="addmedia.xhtml">Add Media</a> <br /> <a
+				href="viewmedia.xhtml">View Media</a> <br />
+			<button id="addMediaButton">Add Media</button>
+			<button id="returnButton">Return</button>
+			<button id="viewMediaButton">View Media</button>
+			<br />
 
-	<h:form id="addMediaForm">
-		<h:outputText value="Title:"></h:outputText>
-		<h:inputText value="#{library.title}"></h:inputText>
-		<br />
-		<h:outputText value="Author:"></h:outputText>
-		<h:inputText value="#{library.author}"></h:inputText>
-		<br />
-		<h:outputText value="Publisher:"></h:outputText>
-		<h:inputText value="#{library.publisher}"></h:inputText>
-		<br />
-		<h:outputText value="Publication Year:"></h:outputText>
-		<h:inputText value="#{library.publicationYear}"></h:inputText>
-		<br />
-		<h:outputText value="Format:"></h:outputText>
-		<h:inputText value="#{library.format}"></h:inputText>
-		<br />
-		<h:outputText value="Type:"></h:outputText>
-		<h:selectOneMenu value="#{library.type}">
-			<f:selectItem itemValue="Book" />
-			<f:selectItem itemValue="EBook" />
-			<f:selectItem itemValue="Music" />
-			<f:selectItem itemValue="Video" />
-		</h:selectOneMenu>
-		<br />
-		<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
-	</h:form>
-	<h:outputText id="txtResult" value="#{library.persistResult}" />
+			<h:form id="addMediaForm" class="forms">
+				<h:outputText value="Title:"></h:outputText>
+				<h:inputText value="#{library.title}"></h:inputText>
+				<br />
+				<h:outputText value="Author:"></h:outputText>
+				<h:inputText value="#{library.author}"></h:inputText>
+				<br />
+				<h:outputText value="Publisher:"></h:outputText>
+				<h:inputText value="#{library.publisher}"></h:inputText>
+				<br />
+				<h:outputText value="Publication Year:"></h:outputText>
+				<h:inputText value="#{library.publicationYear}"></h:inputText>
+				<br />
+				<h:outputText value="Format:"></h:outputText>
+				<h:inputText value="#{library.format}"></h:inputText>
+				<br />
+				<h:outputText value="Type:"></h:outputText>
+				<h:selectOneMenu value="#{library.type}">
+					<f:selectItem itemValue="Book" />
+					<f:selectItem itemValue="EBook" />
+					<f:selectItem itemValue="Music" />
+					<f:selectItem itemValue="Video" />
+				</h:selectOneMenu>
+				<br />
+				<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
+			</h:form>
+			<h:outputText id="txtResult" value="#{library.persistResult}" />
 
-	<div id="body">
-		<button id="myButton">Click Me!</button>
-		<div id="myDiv">
-			<p>Lorem Ipsum is simply dummy text of the printing and
-				typesetting industry. Lorem Ipsum has been the industry's standard
-				dummy text ever since the 1500s, when an unknown printer took a
-				galley of type and scrambled it to make a type specimen book. It has
-				survived not only five centuries, but also the leap into electronic
-				typesetting, remaining essentially unchanged. It was popularised in
-				the 1960s with the release of Letraset sheets containing Lorem Ipsum
-				passages, and more recently with desktop publishing software like
-				Aldus PageMaker including versions of Lorem Ipsum.</p>
-			<p>It is a long established fact that a reader will be distracted
-				by the readable content of a page when looking at its layout. The
-				point of using Lorem Ipsum is that it has a more-or-less normal
-				distribution of letters, as opposed to using 'Content here, content
-				here', making it look like readable English. Many desktop publishing
-				packages and web page editors now use Lorem Ipsum as their default
-				model text, and a search for 'lorem ipsum' will uncover many web
-				sites still in their infancy. Various versions have evolved over the
-				years, sometimes by accident, sometimes on purpose (injected humour
-				and the like).</p>
+			<h:form id="viewMediaForm" class="forms">
+				<h:selectOneMenu value="#{viewMedia.type}">
+					<f:selectItem itemValue="Book" />
+					<f:selectItem itemValue="EBook" />
+					<f:selectItem itemValue="Music" />
+					<f:selectItem itemValue="Video" />
+				</h:selectOneMenu>
+			</h:form>
 		</div>
 	</div>
 </h:body>
