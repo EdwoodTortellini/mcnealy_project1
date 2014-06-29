@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.mcnealy.library.EIS.Media;
+import com.mcnealy.library.Errors.MediaException;
 import com.mcnealy.library.enums.MediaType;
 
 /**
@@ -30,17 +31,25 @@ public class LibraryBean {
 	 * 
 	 * @param media
 	 *            The media item to insert.
+	 * @throws MediaException
 	 */
-	public boolean insertMedia(Media media) {
-		Media entity = new Media();
-		entity.setAuthor(media.getAuthor());
-		entity.setFormat(media.getFormat());
-		entity.setPublicationYear(media.getPublicationYear());
-		entity.setPublisher(media.getPublisher());
-		entity.setTitle(media.getTitle());
-		entity.setType(media.getType());
-		em.persist(entity);
+	public boolean insertMedia(Media media) throws MediaException {
+		Query query = em
+				.createQuery("SELECT m FROM Media m WHERE m.title = :title AND m.author = :author")
+				.setParameter("title", media.getTitle()).setParameter("author", media.getAuthor());
+		if (query.getSingleResult() != null)
+			throw new MediaException("A media item by that title and author already exists.");
+		em.persist(media);
 		return true;
+	}
+
+	public void updateMedia(Media media) throws MediaException {
+		Media original = em.find(Media.class, media.getId());
+		if (original == null)
+			throw new MediaException("Cannot be updated because media item does not exist.");
+		if (original.equals(media))
+			throw new MediaException("No changes to make.");
+		em.merge(media);
 	}
 
 	public Media find(Integer id) {

@@ -184,4 +184,75 @@ public class Media implements Serializable {
 		return title;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + (canEdit ? 1231 : 1237);
+		result = prime * result + ((format == null) ? 0 : format.hashCode());
+		result = prime * result + ((mediaId == null) ? 0 : mediaId.hashCode());
+		result = prime * result + ((publicationYear == null) ? 0 : publicationYear.hashCode());
+		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Media other = (Media) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (canEdit != other.canEdit)
+			return false;
+		if (format == null) {
+			if (other.format != null)
+				return false;
+		} else if (!format.equals(other.format))
+			return false;
+		if (mediaId == null) {
+			if (other.mediaId != null)
+				return false;
+		} else if (!mediaId.equals(other.mediaId))
+			return false;
+		if (publicationYear == null) {
+			if (other.publicationYear != null)
+				return false;
+		} else if (!publicationYear.equals(other.publicationYear))
+			return false;
+		if (publisher == null) {
+			if (other.publisher != null)
+				return false;
+		} else if (!publisher.equals(other.publisher))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+
 }

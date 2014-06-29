@@ -3,14 +3,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-<title><ui:insert name="title">Library</ui:insert></title>
-</head>
+<h:head>
+	<title><ui:insert name="title">Library</ui:insert></title>
+	<h:outputScript library="js" name="jquery.js" target="body" />
+	<h:outputScript library="js" name="scriptstuff.js" target="body" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
 
-<body>
+<h:body>
+	<h2>Media Library</h2>
 	<a href="addmedia.xhtml">Add Media</a>
+	<br />
 	<a href="viewmedia.xhtml">View Media</a>
-</body>
+	<br />
+	<button id="addMediaButton">Add Media</button>
+	<br />
+
+	<h:form id="addMediaForm">
+		<h:outputText value="Title:"></h:outputText>
+		<h:inputText value="#{library.title}"></h:inputText>
+		<br />
+		<h:outputText value="Author:"></h:outputText>
+		<h:inputText value="#{library.author}"></h:inputText>
+		<br />
+		<h:outputText value="Publisher:"></h:outputText>
+		<h:inputText value="#{library.publisher}"></h:inputText>
+		<br />
+		<h:outputText value="Publication Year:"></h:outputText>
+		<h:inputText value="#{library.publicationYear}"></h:inputText>
+		<br />
+		<h:outputText value="Format:"></h:outputText>
+		<h:inputText value="#{library.format}"></h:inputText>
+		<br />
+		<h:outputText value="Type:"></h:outputText>
+		<h:selectOneMenu value="#{library.type}">
+			<f:selectItem itemValue="Book" />
+			<f:selectItem itemValue="EBook" />
+			<f:selectItem itemValue="Music" />
+			<f:selectItem itemValue="Video" />
+		</h:selectOneMenu>
+		<br />
+		<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
+	</h:form>
+	<h:outputText id="txtResult" value="#{library.persistResult}" />
+
+	<div id="body">
+		<button id="myButton">Click Me!</button>
+		<div id="myDiv">
+			<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum.</p>
+			<p>It is a long established fact that a reader will be distracted
+				by the readable content of a page when looking at its layout. The
+				point of using Lorem Ipsum is that it has a more-or-less normal
+				distribution of letters, as opposed to using 'Content here, content
+				here', making it look like readable English. Many desktop publishing
+				packages and web page editors now use Lorem Ipsum as their default
+				model text, and a search for 'lorem ipsum' will uncover many web
+				sites still in their infancy. Various versions have evolved over the
+				years, sometimes by accident, sometimes on purpose (injected humour
+				and the like).</p>
+		</div>
+	</div>
+</h:body>
 
 </html>

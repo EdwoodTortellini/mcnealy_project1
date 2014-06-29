@@ -1,21 +1,59 @@
-.commentTable{   
-   border-collapse:collapse;
-   border:1px solid #000000;
+.mediaTable {
+	border-collapse: collapse;
+	border: 1px solid #000000;
 }
 
-.commentTableHeader{
-   text-align:center;
-   background:none repeat scroll 0 0 #B5B5B5;
-   border-bottom:1px solid #000000;  
-   padding:2px;
+.mediaTableHeader {
+	text-align: center;
+	background: none repeat scroll 0 0 #B5B5B5;
+	border-bottom: 1px solid #000000;
+	padding: 2px;
 }
 
-.commentTableOddRow{
-   text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
+.mediaTableOddRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
 }
 
-.commentTableEvenRow{
-   text-align:center;
-   background:none repeat scroll 0 0 #D3D3D3;
+.mediaTableEvenRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #D3D3D3;
+}
+
+/** Style for the body **/
+ body {
+    font: 12px Tahoma, Arial, Helvetica, Sans-Serif;
+}
+/** Style for the button & div **/
+ #myButton {
+    padding: .2em 1em;
+    font-size: 1em;
+}
+#addMediaForm {
+	background-color: gray;
+	display: none;
+	text-align:justify;
+}
+#myDiv {
+    color:Green;
+    background-color:#eee;
+    border:2px solid #333;
+    display:none;
+    text-align:justify;
+}
+#myDiv p {
+    margin: 15px;
+    font-size: 0.917em;
+}
+/** Style for the cointainer **/
+ #body {
+    clear: both;
+    margin: 0 auto;
+    max-width: 534px;
+}
+html, body {
+    background-color:White;
+}
+hr {
+    margin-bottom:40px;
 }

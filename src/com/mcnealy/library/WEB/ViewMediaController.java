@@ -6,13 +6,14 @@ package com.mcnealy.library.WEB;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.mcnealy.library.EIS.Media;
 import com.mcnealy.library.EJB.LibraryBean;
+import com.mcnealy.library.Errors.MediaException;
 import com.mcnealy.library.enums.MediaType;
 
 /**
@@ -20,7 +21,7 @@ import com.mcnealy.library.enums.MediaType;
  * 
  */
 @ManagedBean(name = "viewMedia", eager = true)
-@SessionScoped
+@RequestScoped
 public class ViewMediaController {
 
 	@EJB
@@ -30,6 +31,8 @@ public class ViewMediaController {
 	private Media media;
 	private String selectedMedia;
 	private List<Media> mediaList;
+
+	private String result;
 
 	public void selectByType(AjaxBehaviorEvent event) {
 		mediaList = libraryBean.getMediaByType(type);
@@ -54,6 +57,13 @@ public class ViewMediaController {
 	public String save() {
 		Media media = (Media) mediaTable.getRowData();
 		media.setCanEdit(false);
+		try {
+			libraryBean.updateMedia(media);
+		} catch (MediaException e) {
+			result = e.getMessage();
+			return "";
+		}
+		result = media.getTitle() + " has been saved.";
 		return "";
 	}
 
@@ -115,5 +125,20 @@ public class ViewMediaController {
 	 */
 	public void setSelectedMedia(String selectedMedia) {
 		this.selectedMedia = selectedMedia;
+	}
+
+	/**
+	 * @return the result
+	 */
+	public String getResult() {
+		return result;
+	}
+
+	/**
+	 * @param result
+	 *            the result to set
+	 */
+	public void setResult(String result) {
+		this.result = result;
 	}
 }

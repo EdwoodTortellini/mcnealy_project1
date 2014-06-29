@@ -37,6 +37,45 @@
 				<h:outputText value="#{media.title}" rendered="#{not media.canEdit}" />
 			</h:column>
 			<h:column>
+				<f:facet name="header">Author</f:facet>
+				<h:inputText value="#{media.author}" size="20"
+					rendered="#{media.canEdit}" />
+				<h:outputText value="#{media.author}"
+					rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Publisher</f:facet>
+				<h:inputText value="#{media.publisher}" size="20"
+					rendered="#{media.canEdit}" />
+				<h:outputText value="#{media.publisher}"
+					rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Format</f:facet>
+				<h:inputText value="#{media.format}" size="20"
+					rendered="#{media.canEdit}" />
+				<h:outputText value="#{media.format}"
+					rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Publication Year</f:facet>
+				<h:inputText value="#{media.publicationYear}" size="20"
+					rendered="#{media.canEdit}" />
+				<h:outputText value="#{media.publicationYear}"
+					rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+				<h:selectOneMenu value="#{viewMedia.type}"
+					rendered="#{media.canEdit}">
+					<f:selectItem itemValue="Book" />
+					<f:selectItem itemValue="EBook" />
+					<f:selectItem itemValue="Music" />
+					<f:selectItem itemValue="Video" />
+				</h:selectOneMenu>
+				<h:outputText value="#{media.type}" rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
 				<f:facet name="header">Edit</f:facet>
 				<h:commandButton value="Edit" action="#{viewMedia.edit}"
 					rendered="#{not media.canEdit}">
@@ -49,6 +88,8 @@
 		<h:commandButton value="Edit Media" action="editmedia" />
 
 	</h:form>
+	<h:outputText value="#{viewMedia.result}" />
+	<br />
 	<a href="index.xhtml">Home</a>
 </h:body>
 </html>

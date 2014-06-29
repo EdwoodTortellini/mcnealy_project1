@@ -13,6 +13,7 @@ import javax.faces.model.SelectItem;
 
 import com.mcnealy.library.EIS.Media;
 import com.mcnealy.library.EJB.LibraryBean;
+import com.mcnealy.library.Errors.MediaException;
 import com.mcnealy.library.enums.MediaType;
 
 /**
@@ -45,7 +46,12 @@ public class Library {
 
 	public String addMedia() {
 		Media media = new Media(title, publisher, format, publicationYear, author, type);
-		libraryBean.insertMedia(media);
+		try {
+			libraryBean.insertMedia(media);
+		} catch (MediaException e) {
+			persistResult = e.getMessage();
+			return "";
+		}
 		persistResult = "The media item " + media.toString() + " was added.";
 		return media.toString();
 	}
