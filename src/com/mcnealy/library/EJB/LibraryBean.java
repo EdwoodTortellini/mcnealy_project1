@@ -43,6 +43,10 @@ public class LibraryBean {
 		return true;
 	}
 
+	public Media find(Integer id) {
+		return em.find(Media.class, id);
+	}
+
 	/**
 	 * Use a named query to select all Media items from the database.
 	 * 

@@ -33,6 +33,7 @@ public class Media implements Serializable {
 	private String author;
 	@Enumerated(EnumType.STRING)
 	private MediaType type;
+	private boolean canEdit;
 	private static final long serialVersionUID = 1L;
 
 	public Media() {
@@ -161,6 +162,21 @@ public class Media implements Serializable {
 	 */
 	public void setType(MediaType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the canEdit
+	 */
+	public boolean isCanEdit() {
+		return canEdit;
+	}
+
+	/**
+	 * @param canEdit
+	 *            the canEdit to set
+	 */
+	public void setCanEdit(boolean canEdit) {
+		this.canEdit = canEdit;
 	}
 
 	@Override

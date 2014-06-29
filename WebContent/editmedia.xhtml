@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="title">Edit Media</ui:insert></title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:form>
+			<h:outputText value="Title:"></h:outputText>
+			<h:inputText value="#{editMedia.media.title}"></h:inputText>
+			<br />
+			<h:outputText value="Author:"></h:outputText>
+			<h:inputText value="#{editMedia.media.author}"></h:inputText>
+			<br />
+			<h:outputText value="Publisher:"></h:outputText>
+			<h:inputText value="#{editMedia.media.publisher}"></h:inputText>
+			<br />
+			<h:outputText value="Publication Year:"></h:outputText>
+			<h:inputText value="#{editMedia.media.publicationYear}"></h:inputText>
+			<br />
+			<h:outputText value="Format:"></h:outputText>
+			<h:inputText value="#{editMedia.media.format}"></h:inputText>
+			<br />
+			<h:outputText value="Type:"></h:outputText>
+			<h:selectOneMenu value="#{library.type}">
+				<f:selectItem itemValue="Book" />
+				<f:selectItem itemValue="EBook" />
+				<f:selectItem itemValue="Music" />
+				<f:selectItem itemValue="Video" />
+			</h:selectOneMenu>
+			<br />
+			<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
+		</h:form>
+		<h:outputText id="txtResult" value="#{library.persistResult}" />
+	</h:form>
+</h:body>
+</html>

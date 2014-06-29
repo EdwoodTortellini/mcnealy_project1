@@ -6,6 +6,9 @@ package com.mcnealy.library.WEB;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.mcnealy.library.EIS.Media;
@@ -16,19 +19,42 @@ import com.mcnealy.library.enums.MediaType;
  * @author emcnealy
  * 
  */
+@ManagedBean(name = "viewMedia", eager = true)
+@SessionScoped
 public class ViewMediaController {
 
 	@EJB
 	LibraryBean libraryBean;
 
 	private MediaType type;
-	private String media;
+	private Media media;
+	private String selectedMedia;
 	private List<Media> mediaList;
-	private String result;
 
 	public void selectByType(AjaxBehaviorEvent event) {
-		result = type.toString();
 		mediaList = libraryBean.getMediaByType(type);
+	}
+
+	private HtmlDataTable mediaTable;
+
+	public HtmlDataTable getMediaTable() {
+		return mediaTable;
+	}
+
+	public void setMediaTable(HtmlDataTable mediaTable) {
+		this.mediaTable = mediaTable;
+	}
+
+	public String edit() {
+		Media media = (Media) mediaTable.getRowData();
+		media.setCanEdit(true);
+		return null;
+	}
+
+	public String save() {
+		Media media = (Media) mediaTable.getRowData();
+		media.setCanEdit(false);
+		return "";
 	}
 
 	/**
@@ -49,7 +75,7 @@ public class ViewMediaController {
 	/**
 	 * @return the media
 	 */
-	public String getMedia() {
+	public Media getMedia() {
 		return media;
 	}
 
@@ -57,7 +83,7 @@ public class ViewMediaController {
 	 * @param media
 	 *            the media to set
 	 */
-	public void setMedia(String media) {
+	public void setMedia(Media media) {
 		this.media = media;
 	}
 
@@ -79,15 +105,15 @@ public class ViewMediaController {
 	/**
 	 * @return the result
 	 */
-	public String getResult() {
-		return result;
+	public String getSelectedMedia() {
+		return selectedMedia;
 	}
 
 	/**
 	 * @param result
 	 *            the result to set
 	 */
-	public void setResult(String result) {
-		this.result = result;
+	public void setSelectedMedia(String selectedMedia) {
+		this.selectedMedia = selectedMedia;
 	}
 }

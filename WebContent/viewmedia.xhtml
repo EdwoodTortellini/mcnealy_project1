@@ -14,16 +14,41 @@
 			<f:selectItem itemValue="EBook" />
 			<f:selectItem itemValue="Music" />
 			<f:selectItem itemValue="Video" />
-			<f:ajax listener="#{viewMedia.selectByType}" render="selectResult" event="change" />
-		</h:selectOneMenu>
-		<br />
-		<h:outputText id="txtResult" value="#{viewMedia.mediaList}" />
-		<br/>
-		<h:selectOneMenu id="selectResult" value="#{viewMedia.result}">
-			<f:selectItems value="#{viewMedia.mediaList}"/>
-			<f:ajax event="change" update="cs" />
+			<f:ajax listener="#{viewMedia.selectByType}"
+				render="selectResult mediaTable txtResult" />
 		</h:selectOneMenu>
 
+		<br />
+		<h:outputText id="txtResult" value="#{viewMedia.mediaList[0].format}" />
+		<br />
+
+		<h:selectOneMenu id="selectResult" value="#{viewMedia.selectedMedia}">
+			<f:selectItems value="#{viewMedia.mediaList}" />
+		</h:selectOneMenu>
+
+		<br />
+
+		<h:dataTable id="mediaTable" value="#{viewMedia.mediaList}"
+			var="media" binding="#{viewMedia.mediaTable}">
+			<h:column>
+				<f:facet name="header">Title</f:facet>
+				<h:inputText value="#{media.title}" size="20"
+					rendered="#{media.canEdit}" />
+				<h:outputText value="#{media.title}" rendered="#{not media.canEdit}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandButton value="Edit" action="#{viewMedia.edit}"
+					rendered="#{not media.canEdit}">
+				</h:commandButton>
+				<h:commandButton value="Save" action="#{viewMedia.save}"
+					rendered="#{media.canEdit}" />
+			</h:column>
+		</h:dataTable>
+
+		<h:commandButton value="Edit Media" action="editmedia" />
+
 	</h:form>
+	<a href="index.xhtml">Home</a>
 </h:body>
 </html>
