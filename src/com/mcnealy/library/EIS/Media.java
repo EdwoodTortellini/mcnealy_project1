@@ -165,7 +165,7 @@ public class Media implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Title: " + title;
+		return title;
 	}
 
 }

@@ -22,15 +22,13 @@ public class ViewMediaController {
 	LibraryBean libraryBean;
 
 	private MediaType type;
+	private String media;
 	private List<Media> mediaList;
 	private String result;
 
 	public void selectByType(AjaxBehaviorEvent event) {
 		result = type.toString();
 		mediaList = libraryBean.getMediaByType(type);
-		if (mediaList == null || mediaList.isEmpty()) {
-			mediaList.add(new Media());
-		}
 	}
 
 	/**
@@ -46,6 +44,21 @@ public class ViewMediaController {
 	 */
 	public void setType(MediaType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the media
+	 */
+	public String getMedia() {
+		return media;
+	}
+
+	/**
+	 * @param media
+	 *            the media to set
+	 */
+	public void setMedia(String media) {
+		this.media = media;
 	}
 
 	/**

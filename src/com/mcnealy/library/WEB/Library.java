@@ -32,6 +32,8 @@ public class Library {
 	private MediaType type;
 	private List<SelectItem> types;
 
+	private String persistResult;
+
 	@PostConstruct
 	public void init() {
 		types = new ArrayList<SelectItem>();
@@ -44,6 +46,7 @@ public class Library {
 	public String addMedia() {
 		Media media = new Media(title, publisher, format, publicationYear, author, type);
 		libraryBean.insertMedia(media);
+		persistResult = "The media item " + media.toString() + " was added.";
 		return media.toString();
 	}
 
@@ -150,5 +153,20 @@ public class Library {
 	 */
 	public void setTypes(List<SelectItem> types) {
 		this.types = types;
+	}
+
+	/**
+	 * @return the persistResult
+	 */
+	public String getPersistResult() {
+		return persistResult;
+	}
+
+	/**
+	 * @param persistResult
+	 *            the persistResult to set
+	 */
+	public void setPersistResult(String persistResult) {
+		this.persistResult = persistResult;
 	}
 }

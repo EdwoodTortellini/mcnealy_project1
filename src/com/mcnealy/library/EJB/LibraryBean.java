@@ -31,7 +31,7 @@ public class LibraryBean {
 	 * @param media
 	 *            The media item to insert.
 	 */
-	public void insertMedia(Media media) {
+	public boolean insertMedia(Media media) {
 		Media entity = new Media();
 		entity.setAuthor(media.getAuthor());
 		entity.setFormat(media.getFormat());
@@ -40,6 +40,7 @@ public class LibraryBean {
 		entity.setTitle(media.getTitle());
 		entity.setType(media.getType());
 		em.persist(entity);
+		return true;
 	}
 
 	/**

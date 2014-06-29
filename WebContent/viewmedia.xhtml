@@ -14,13 +14,14 @@
 			<f:selectItem itemValue="EBook" />
 			<f:selectItem itemValue="Music" />
 			<f:selectItem itemValue="Video" />
-			<f:ajax listener="#{viewMedia.selectByType}" render="txtResult" />
+			<f:ajax listener="#{viewMedia.selectByType}" render="selectResult" event="change" />
 		</h:selectOneMenu>
 		<br />
-		<h:outputText id="txtResult" value="#{viewMedia.result}" />
+		<h:outputText id="txtResult" value="#{viewMedia.mediaList}" />
 		<br/>
-		<h:selectOneMenu value="media">
-			<f:selectItem itemValue="#{viewMedia.mediaList}"/>
+		<h:selectOneMenu id="selectResult" value="#{viewMedia.result}">
+			<f:selectItems value="#{viewMedia.mediaList}"/>
+			<f:ajax event="change" update="cs" />
 		</h:selectOneMenu>
 
 	</h:form>
