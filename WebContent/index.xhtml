@@ -25,7 +25,6 @@
 			<table class="buttons">
 				<tr class="buttons">
 					<td class="buttons" id="addMediaButton">Add Media</td>
-					<td class="buttons" id="returnButton">Return</td>
 					<td class="buttons" id="viewMediaButton">View Media</td>
 				</tr>
 			</table>
@@ -73,6 +72,8 @@
 						<h:outputText styleClass="addFormOutput"></h:outputText>
 						<h:commandButton styleClass="addFormButton" value="Submit"
 							action="#{library.addMedia}"></h:commandButton>
+							<h:commandButton styleClass="addFormButton" value="Test Data"
+							action="#{library.addTestData}"></h:commandButton>
 					</div>
 				</div>
 			</h:form>
@@ -153,9 +154,7 @@
 			<br />
 		</div>
 	</div>
-	<h:outputText value="Add #{library.viewAddForm}"></h:outputText>
 	<input type="hidden" id="hdnAdd" value="#{library.viewAddForm}"></input>
-	<h:outputText value="View #{viewMedia.viewMediaForm}"></h:outputText>
 	<input type="hidden" id="hdnView" value="#{viewMedia.viewMediaForm}"></input>
 </h:body>
 

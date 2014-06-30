@@ -8,41 +8,41 @@ $(document).ready(function() {
 	// Get the buttons
 	var viewButton = $('#viewMediaButton');
 	var addButton = $('#addMediaButton');
-	var returnButton = $('#returnButton');
 	
 	if (hdnView == 'true') {
 		viewForm.show();
-		viewButton.hide();
+		viewButton.text('Hide');
 	} else {
 		viewForm.hide();
-		viewButton.show();
+		viewButton.text("View Media");
 	}
 	
 	if (hdnAdd == 'true') {
 		addForm.show();
-		addButton.hide();
+		addButton.text('Hide');
 	} else {
 		addForm.hide();
-		addButton.show();
-	}
-	
-	if ((hdnAdd == 'true' && hdnView == 'true') || (hdnAdd == 'false' && hdnView == 'true') || (hdnAdd == 'true' && hdnView == 'false')) {
-		returnButton.show();
-	} else {
-		returnButton.hide();
+		addButton.text('Add Media');
 	}
 });
 
 function slideIt(id, direction) {
-	// Hide the button that slid the element and show the home button
-	$('#' + id).hide();
-	$('#returnButton').show();
+	var button = $('#' + id);
+	// Text to change the button
+	var text = id == 'addMediaButton' ? "Add" : "View";
+	// The form to slide
+	var page = id == 'addMediaButton' ? $('#addMediaForm') : $('#viewMediaForm');
 
-	// Get the page to slide and determine the direction the slide it!
-	var page = id == 'addMediaButton' ? $('#addMediaForm')
-			: $('#viewMediaForm');
-	var direction = id == 'addMediaButton' ? 'right' : 'left';
+	var direction = id == 'addMediaButton' ? 'left' : 'right';
 	slideElement(page, direction);
+
+	if (button.text() == 'Hide') {
+		button.text(text + ' Media');
+		$('#persistResult').text('');
+		$('#updateResult').text('');
+	} else {
+		button.text('Hide');
+	}
 }
 
 function slideElement(element, direction) {
@@ -53,30 +53,6 @@ function slideElement(element, direction) {
 	var duration = 700;
 	element.toggle(effect, options, duration);
 }
-
-$('#returnButton').click(function() {
-	$(this).hide();
-	var buttons = [ $('#addMediaButton'), $('#viewMediaButton') ];
-	var pages = [ $('#addMediaForm'), $('#viewMediaForm') ];
-
-	$.each(buttons, function() {
-		if (!this.is(':visible'))
-			this.show();
-	});
-
-	$.each(pages, function() {
-		// Get the direction to slide the page. Should be opposite of the one
-		// used to show
-		if (this.is(':visible')) {
-			var direction = this.attr('id') == 'addMediaForm' ? 'right' : 'left';
-			slideElement(this, direction);
-		}
-	});
-	
-	// Clear the information headers
-	$('#persistResult').text('');
-	$('#updateResult').text('');
-});
 
 $('#addMediaButton').click(function() {
 	slideIt(this.id);

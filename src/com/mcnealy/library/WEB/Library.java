@@ -37,7 +37,7 @@ public class Library {
 
 	private String persistResult;
 
-	private boolean viewAddForm = true;
+	private boolean viewAddForm = false;
 
 	@PostConstruct
 	public void init() {
@@ -54,11 +54,48 @@ public class Library {
 			libraryBean.insertMedia(media);
 		} catch (MediaException e) {
 			persistResult = e.getMessage();
+			viewAddForm = true;
 			return "";
 		}
 		persistResult = "The media item " + media.toString() + " was added.";
 		viewAddForm = true;
 		return media.toString();
+	}
+
+	/**
+	 * Used to populate the database to view many different types of media items.
+	 * 
+	 * @return nothing.
+	 */
+	public String addTestData() {
+		List<Media> mediaList = new ArrayList<Media>();
+		for (int x = 0; x < 10; x++) {
+			String num = String.valueOf(x);
+			Media book = new Media("Book " + num, "Publisher Name", "Hardback", "200" + num,
+					"Author Name", MediaType.Book);
+			Media ebook = new Media("EBook " + num, "Publisher Name", "Digital", "200" + num,
+					"Author Name", MediaType.EBook);
+			Media music = new Media("Music " + num, "Publisher Name", "Record", "200" + num,
+					"Author Name", MediaType.Music);
+			Media video = new Media("Video " + num, "Publisher Name", "DVD", "200" + num,
+					"Author Name", MediaType.Video);
+			mediaList.add(book);
+			mediaList.add(ebook);
+			mediaList.add(music);
+			mediaList.add(video);
+		}
+		for (Media media : mediaList) {
+			try {
+				libraryBean.insertMedia(media);
+			} catch (MediaException e) {
+				persistResult = e.getMessage();
+				viewAddForm = true;
+				return "";
+			}
+		}
+		viewAddForm = true;
+		persistResult = mediaList.size() + " records of test data added.";
+		return "";
 	}
 
 	/**
