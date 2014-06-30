@@ -36,20 +36,23 @@ public class ViewMediaController {
 
 	private boolean viewMediaForm = false;
 
+	private HtmlDataTable mediaTable;
+
+	/**
+	 * Select all Media items based on type.
+	 * 
+	 * @param event
+	 *            Ajax event.
+	 */
 	public void selectByType(AjaxBehaviorEvent event) {
 		mediaList = libraryBean.getMediaByType(type);
 	}
 
-	private HtmlDataTable mediaTable;
-
-	public HtmlDataTable getMediaTable() {
-		return mediaTable;
-	}
-
-	public void setMediaTable(HtmlDataTable mediaTable) {
-		this.mediaTable = mediaTable;
-	}
-
+	/**
+	 * Used to select a Media item to edit.
+	 * 
+	 * @return nothing
+	 */
 	public String edit() {
 		Media media = (Media) mediaTable.getRowData();
 		media.setCanEdit(true);
@@ -57,6 +60,11 @@ public class ViewMediaController {
 		return "";
 	}
 
+	/**
+	 * Used to save an updated Media item.
+	 * 
+	 * @return
+	 */
 	public String save() {
 		Media media = (Media) mediaTable.getRowData();
 		media.setCanEdit(false);
@@ -160,5 +168,20 @@ public class ViewMediaController {
 	 */
 	public void setViewMediaForm(boolean viewMediaForm) {
 		this.viewMediaForm = viewMediaForm;
+	}
+
+	/**
+	 * @return the mediaTable
+	 */
+	public HtmlDataTable getMediaTable() {
+		return mediaTable;
+	}
+
+	/**
+	 * @param mediaTable
+	 *            the mediaTable to set
+	 */
+	public void setMediaTable(HtmlDataTable mediaTable) {
+		this.mediaTable = mediaTable;
 	}
 }

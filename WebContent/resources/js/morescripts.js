@@ -8,7 +8,7 @@ $(document).ready(function() {
 	// Get the buttons
 	var viewButton = $('#viewMediaButton');
 	var addButton = $('#addMediaButton');
-	
+
 	if (hdnView == 'true') {
 		viewForm.show();
 		viewButton.text('Hide');
@@ -16,7 +16,7 @@ $(document).ready(function() {
 		viewForm.hide();
 		viewButton.text("View Media");
 	}
-	
+
 	if (hdnAdd == 'true') {
 		addForm.show();
 		addButton.text('Hide');
@@ -26,12 +26,22 @@ $(document).ready(function() {
 	}
 });
 
+/**
+ * Used to slide a page element into or out of view. Also sets the text of the
+ * button accordingly.
+ * 
+ * @param id
+ *            The id of the button that was clicked.
+ * @param direction
+ *            The direction to slide the page element.
+ */
 function slideIt(id, direction) {
 	var button = $('#' + id);
 	// Text to change the button
 	var text = id == 'addMediaButton' ? "Add" : "View";
 	// The form to slide
-	var page = id == 'addMediaButton' ? $('#addMediaForm') : $('#viewMediaForm');
+	var page = id == 'addMediaButton' ? $('#addMediaForm')
+			: $('#viewMediaForm');
 
 	var direction = id == 'addMediaButton' ? 'left' : 'right';
 	slideElement(page, direction);
@@ -45,6 +55,14 @@ function slideIt(id, direction) {
 	}
 }
 
+/**
+ * Used to slide a page element.
+ * 
+ * @param element
+ *            The element to slide.
+ * @param direction
+ *            The direction to slide the element.
+ */
 function slideElement(element, direction) {
 	var effect = 'slide';
 	var options = {
@@ -54,6 +72,7 @@ function slideElement(element, direction) {
 	element.toggle(effect, options, duration);
 }
 
+// Set the onclick functions for the buttons
 $('#addMediaButton').click(function() {
 	slideIt(this.id);
 });

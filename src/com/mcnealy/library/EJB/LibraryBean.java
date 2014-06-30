@@ -32,6 +32,7 @@ public class LibraryBean {
 	 * @param media
 	 *            The media item to insert.
 	 * @throws MediaException
+	 *             An exception to throw.
 	 */
 	public boolean insertMedia(Media media) throws MediaException {
 		Query query = em
@@ -43,6 +44,14 @@ public class LibraryBean {
 		return true;
 	}
 
+	/**
+	 * Update a Media item that already exists in the database.
+	 * 
+	 * @param media
+	 *            The media item to update.
+	 * @throws MediaException
+	 *             An exception to throw.
+	 */
 	public void updateMedia(Media media) throws MediaException {
 		Media original = em.find(Media.class, media.getId());
 		if (original == null)
@@ -52,6 +61,13 @@ public class LibraryBean {
 		em.merge(media);
 	}
 
+	/**
+	 * Find a Media item based on it's id.
+	 * 
+	 * @param id
+	 *            The media item's id.
+	 * @return The media item to get.
+	 */
 	public Media find(Integer id) {
 		return em.find(Media.class, id);
 	}
@@ -66,16 +82,17 @@ public class LibraryBean {
 		return query.getResultList();
 	}
 
+	/**
+	 * Return all Media items of a certain type.
+	 * 
+	 * @param type
+	 *            The type of media items to return.
+	 * @return All media items of a certain type.
+	 */
 	public List<Media> getMediaByType(MediaType type) {
 		Query query = em.createNamedQuery("selectAllMediaByType");
 		query.setParameter("type", type);
 		return query.getResultList();
-	}
-
-	public void createMediaTypes() {
-		Media music = new Media("Discovering the Waterfront", "publisher", "format", "2005",
-				"Silverstein", MediaType.Music);
-		em.persist(music);
 	}
 
 }

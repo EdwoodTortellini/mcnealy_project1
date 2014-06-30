@@ -27,13 +27,13 @@ h3 {
 	width: 1272px;
 }
 
-/*Division to seperate the content*/
+/** Division to separate the content **/
 #left,#right {
 	position: absolute;
 	background-color: #E9E9E9;
 }
 
-/*Division for main content*/
+/** Division for main content **/
 #main {
 	position: relative;
 	margin-top: 50px;
@@ -47,6 +47,7 @@ h3 {
 	height: 650px;
 }
 
+/** The page forms (Add and View) **/
 .forms {
 	background-color: #CCCCCC;
 	display: none;
@@ -55,14 +56,8 @@ h3 {
 	padding: 20px;
 }
 
-/** Style for the container **/
-#body {
-	clear: both;
-	margin: 0 auto;
-	max-width: 534px;
-}
-
 /********** Add Form **********/
+
 .addForm {
 	width: 350px;
 	margin: 0px auto;
@@ -91,6 +86,7 @@ h3 {
 }
 
 /********** View Form **********/
+
 .selectDiv {
 	width: 200px;
 	margin: 0px auto;
@@ -102,6 +98,7 @@ h3 {
 }
 
 /********** Table for buttons **********/
+
 table.buttons {
 	margin: 0px auto;
 	position: relative;
@@ -122,6 +119,7 @@ td.buttons,tr.buttons {
 }
 
 /********** Table for View Media **********/
+
 .mediaTable {
 	border-collapse: collapse;
 	border: 1px solid #000000;

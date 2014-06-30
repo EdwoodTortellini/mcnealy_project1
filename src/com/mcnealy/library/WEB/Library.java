@@ -39,6 +39,9 @@ public class Library {
 
 	private boolean viewAddForm = false;
 
+	/**
+	 * Populates the list of MediaTypes to populate the select menu with.
+	 */
 	@PostConstruct
 	public void init() {
 		types = new ArrayList<SelectItem>();
@@ -48,6 +51,11 @@ public class Library {
 		}
 	}
 
+	/**
+	 * Used to add new Media items into the database.
+	 * 
+	 * @return nothing
+	 */
 	public String addMedia() {
 		Media media = new Media(title, publisher, format, publicationYear, author, type);
 		try {
