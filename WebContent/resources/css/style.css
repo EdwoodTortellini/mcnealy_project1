@@ -47,35 +47,12 @@ h3 {
 	height: 650px;
 }
 
-.buttonLeft {
-	position: relative;
-	margin: 20px;
-	float: left;
-}
-
-.buttonRight {
-	position: relative;
-	margin: 20px;
-	float: right;
-}
-
 .forms {
-	background-color: gray;
+	background-color: #CCCCCC;
 	display: none;
 	text-align: justify;
-}
-
-#myDiv {
-	color: Green;
-	background-color: #eee;
-	border: 2px solid #333;
-	display: none;
-	text-align: justify;
-}
-
-#myDiv p {
-	margin: 15px;
-	font-size: 0.917em;
+	margin: 10px;
+	padding: 20px;
 }
 
 /** Style for the container **/
@@ -85,11 +62,50 @@ h3 {
 	max-width: 534px;
 }
 
+/********** Add Form **********/
+.addForm {
+	width: 350px;
+	margin: 0px auto;
+	position: relative;
+	margin: 0px auto;
+}
+
+.addFormInput {
+	width: 150px;
+}
+
+.addFormOutput {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.addFormButton {
+	width: 80px;
+	margin: 0px auto;
+}
+
+.addFormSelect {
+	width: 80px;
+}
+
+/********** View Form **********/
+.selectDiv {
+	width: 200px;
+	margin: 0px auto;
+	font-size: 16px;
+	text-align: center;
+	display: block;
+	overflow: hidden;
+	display: block;
+}
+
 /********** Table for buttons **********/
 table.buttons {
 	margin: 0px auto;
 	position: relative;
-} 
+}
 
 td.buttons,tr.buttons {
 	background-color: #1047A9;
@@ -132,4 +148,8 @@ td.buttons,tr.buttons {
 	font-size: 14px;
 	text-align: center;
 	background: none repeat scroll 0 0 #D3D3D3;
+}
+
+.inputYear {
+	width: 50px;
 }

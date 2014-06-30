@@ -67,6 +67,7 @@ public class ViewMediaController {
 			return "";
 		}
 		result = media.getTitle() + " has been saved.";
+		type = media.getType(); // Set the selected type to the updated media's type
 		viewMediaForm = true;
 		return "";
 	}

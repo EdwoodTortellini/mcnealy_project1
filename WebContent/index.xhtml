@@ -37,35 +37,50 @@
 			</div>
 
 			<h:form id="addMediaForm" class="forms">
-				<h:outputText value="Title:"></h:outputText>
-				<h:inputText value="#{library.title}"></h:inputText>
-				<br />
-				<h:outputText value="Author:"></h:outputText>
-				<h:inputText value="#{library.author}"></h:inputText>
-				<br />
-				<h:outputText value="Publisher:"></h:outputText>
-				<h:inputText value="#{library.publisher}"></h:inputText>
-				<br />
-				<h:outputText value="Publication Year:"></h:outputText>
-				<h:inputText value="#{library.publicationYear}"></h:inputText>
-				<br />
-				<h:outputText value="Format:"></h:outputText>
-				<h:inputText value="#{library.format}"></h:inputText>
-				<br />
-				<h:outputText value="Type:"></h:outputText>
-				<h:selectOneMenu value="#{library.type}">
-					<f:selectItem itemValue="Book" />
-					<f:selectItem itemValue="EBook" />
-					<f:selectItem itemValue="Music" />
-					<f:selectItem itemValue="Video" />
-				</h:selectOneMenu>
-				<br />
-				<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
+				<div class="addForm">
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Title:"></h:outputText>
+						<h:inputText styleClass="addFormInput" value="#{library.title}"></h:inputText>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Author:"></h:outputText>
+						<h:inputText styleClass="addFormInput" value="#{library.author}"></h:inputText>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Publisher:"></h:outputText>
+						<h:inputText styleClass="addFormInput"
+							value="#{library.publisher}"></h:inputText>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Publication Year:"></h:outputText>
+						<h:inputText styleClass="addFormInput"
+							value="#{library.publicationYear}"></h:inputText>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Format:"></h:outputText>
+						<h:inputText styleClass="addFormInput" value="#{library.format}"></h:inputText>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput" value="Type:"></h:outputText>
+						<h:selectOneMenu styleClass="addFormSelect" value="#{library.type}">
+							<f:selectItem itemValue="Book" />
+							<f:selectItem itemValue="EBook" />
+							<f:selectItem itemValue="Music" />
+							<f:selectItem itemValue="Video" />
+						</h:selectOneMenu>
+					</div>
+					<div>
+						<h:outputText styleClass="addFormOutput"></h:outputText>
+						<h:commandButton styleClass="addFormButton" value="Submit"
+							action="#{library.addMedia}"></h:commandButton>
+					</div>
+				</div>
 			</h:form>
 			<br />
 
 			<h:form id="viewMediaForm" class="forms">
-				<h:selectOneMenu value="#{viewMedia.type}">
+				<h:selectOneMenu styleClass="selectDiv" value="#{viewMedia.type}">
+					<f:selectItem itemValue="Select a media type..." />
 					<f:selectItem itemValue="Book" />
 					<f:selectItem itemValue="EBook" />
 					<f:selectItem itemValue="Music" />
@@ -109,19 +124,19 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Publication Year</f:facet>
-						<h:inputText value="#{media.publicationYear}" size="20"
+						<h:inputText styleClass="inputYear"
+							value="#{media.publicationYear}" size="20"
 							rendered="#{media.canEdit}" />
 						<h:outputText value="#{media.publicationYear}"
 							rendered="#{not media.canEdit}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Type</f:facet>
-						<h:selectOneMenu value="#{media.type}"
-							rendered="#{media.canEdit}">
-							<f:selectItem itemValue="Book" value="{media.type}"/>
-							<f:selectItem itemValue="EBook" value="{media.type}"/>
-							<f:selectItem itemValue="Music" value="{media.type}"/>
-							<f:selectItem itemValue="Video" value="{media.type}"/>
+						<h:selectOneMenu value="#{media.type}" rendered="#{media.canEdit}">
+							<f:selectItem itemValue="Book" />
+							<f:selectItem itemValue="EBook" />
+							<f:selectItem itemValue="Music" />
+							<f:selectItem itemValue="Video" />
 						</h:selectOneMenu>
 						<h:outputText value="#{media.type}"
 							rendered="#{not media.canEdit}" />
@@ -131,7 +146,7 @@
 						<h:commandButton value="Edit" rendered="#{not media.canEdit}"
 							action="#{viewMedia.edit}" />
 						<h:commandButton value="Save" action="#{viewMedia.save}"
-							rendered="#{media.canEdit}" />
+							rendered="#{media.canEdit}"></h:commandButton>
 					</h:column>
 				</h:dataTable>
 			</h:form>

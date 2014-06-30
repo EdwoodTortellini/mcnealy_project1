@@ -37,7 +37,7 @@ public class Library {
 
 	private String persistResult;
 
-	private boolean viewAddForm = false;
+	private boolean viewAddForm = true;
 
 	@PostConstruct
 	public void init() {
