@@ -37,7 +37,7 @@ public class LibraryBean {
 		Query query = em
 				.createQuery("SELECT m FROM Media m WHERE m.title = :title AND m.author = :author")
 				.setParameter("title", media.getTitle()).setParameter("author", media.getAuthor());
-		if (query.getSingleResult() != null)
+		if (!query.getResultList().isEmpty() && query.getResultList().get(0) != null)
 			throw new MediaException("A media item by that title and author already exists.");
 		em.persist(media);
 		return true;

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 
 import com.mcnealy.library.EIS.Media;
@@ -20,6 +21,7 @@ import com.mcnealy.library.enums.MediaType;
  * @author emcnealy
  * 
  */
+@RequestScoped
 public class Library {
 
 	@EJB
@@ -34,6 +36,8 @@ public class Library {
 	private List<SelectItem> types;
 
 	private String persistResult;
+
+	private boolean viewAddForm = false;
 
 	@PostConstruct
 	public void init() {
@@ -53,6 +57,7 @@ public class Library {
 			return "";
 		}
 		persistResult = "The media item " + media.toString() + " was added.";
+		viewAddForm = true;
 		return media.toString();
 	}
 
@@ -174,5 +179,20 @@ public class Library {
 	 */
 	public void setPersistResult(String persistResult) {
 		this.persistResult = persistResult;
+	}
+
+	/**
+	 * @return the viewAddForm
+	 */
+	public boolean isViewAddForm() {
+		return viewAddForm;
+	}
+
+	/**
+	 * @param viewAddForm
+	 *            the viewAddForm to set
+	 */
+	public void setViewAddForm(boolean viewAddForm) {
+		this.viewAddForm = viewAddForm;
 	}
 }

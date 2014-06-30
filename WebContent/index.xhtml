@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title><ui:insert name="title">Library</ui:insert></title>
@@ -19,12 +20,21 @@
 		<div id="left"></div>
 		<div id="main">
 			<h2>Media Library</h2>
-			<a href="addmedia.xhtml">Add Media</a> <br /> <a
-				href="viewmedia.xhtml">View Media</a> <br />
-			<button id="addMediaButton">Add Media</button>
-			<button id="returnButton">Return</button>
-			<button id="viewMediaButton">View Media</button>
 			<br />
+
+			<table class="buttons">
+				<tr class="buttons">
+					<td class="buttons" id="addMediaButton">Add Media</td>
+					<td class="buttons" id="returnButton">Return</td>
+					<td class="buttons" id="viewMediaButton">View Media</td>
+				</tr>
+			</table>
+			<br />
+
+			<div>
+				<h3 id="persistResult">#{library.persistResult}</h3>
+				<h3 id="updateResult">#{viewMedia.result}</h3>
+			</div>
 
 			<h:form id="addMediaForm" class="forms">
 				<h:outputText value="Title:"></h:outputText>
@@ -52,7 +62,7 @@
 				<br />
 				<h:commandButton value="Submit" action="#{library.addMedia}"></h:commandButton>
 			</h:form>
-			<h:outputText id="txtResult" value="#{library.persistResult}" />
+			<br />
 
 			<h:form id="viewMediaForm" class="forms">
 				<h:selectOneMenu value="#{viewMedia.type}">
@@ -60,10 +70,78 @@
 					<f:selectItem itemValue="EBook" />
 					<f:selectItem itemValue="Music" />
 					<f:selectItem itemValue="Video" />
+					<f:ajax listener="#{viewMedia.selectByType}" render="mediaTable" />
 				</h:selectOneMenu>
+				<br />
+
+				<h:dataTable rowIndexVar="rowId" id="mediaTable"
+					value="#{viewMedia.mediaList}" var="media"
+					binding="#{viewMedia.mediaTable}" styleClass="mediaTable"
+					headerClass="mediaTableHeader"
+					rowClasses="mediaTableOddRow,mediaTableEvenRow">
+					<h:column>
+						<f:facet name="header">Title</f:facet>
+						<h:inputText value="#{media.title}" size="20"
+							rendered="#{media.canEdit}" />
+						<h:outputText value="#{media.title}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Author</f:facet>
+						<h:inputText value="#{media.author}" size="20"
+							rendered="#{media.canEdit}" />
+						<h:outputText value="#{media.author}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Publisher</f:facet>
+						<h:inputText value="#{media.publisher}" size="20"
+							rendered="#{media.canEdit}" />
+						<h:outputText value="#{media.publisher}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Format</f:facet>
+						<h:inputText value="#{media.format}" size="20"
+							rendered="#{media.canEdit}" />
+						<h:outputText value="#{media.format}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Publication Year</f:facet>
+						<h:inputText value="#{media.publicationYear}" size="20"
+							rendered="#{media.canEdit}" />
+						<h:outputText value="#{media.publicationYear}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Type</f:facet>
+						<h:selectOneMenu value="#{media.type}"
+							rendered="#{media.canEdit}">
+							<f:selectItem itemValue="Book" value="{media.type}"/>
+							<f:selectItem itemValue="EBook" value="{media.type}"/>
+							<f:selectItem itemValue="Music" value="{media.type}"/>
+							<f:selectItem itemValue="Video" value="{media.type}"/>
+						</h:selectOneMenu>
+						<h:outputText value="#{media.type}"
+							rendered="#{not media.canEdit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Edit</f:facet>
+						<h:commandButton value="Edit" rendered="#{not media.canEdit}"
+							action="#{viewMedia.edit}" />
+						<h:commandButton value="Save" action="#{viewMedia.save}"
+							rendered="#{media.canEdit}" />
+					</h:column>
+				</h:dataTable>
 			</h:form>
+			<br />
 		</div>
 	</div>
+	<h:outputText value="Add #{library.viewAddForm}"></h:outputText>
+	<input type="hidden" id="hdnAdd" value="#{library.viewAddForm}"></input>
+	<h:outputText value="View #{viewMedia.viewMediaForm}"></h:outputText>
+	<input type="hidden" id="hdnView" value="#{viewMedia.viewMediaForm}"></input>
 </h:body>
 
 </html>

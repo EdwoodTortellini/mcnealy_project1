@@ -1,31 +1,24 @@
-.mediaTable {
-	border-collapse: collapse;
-	border: 1px solid #000000;
-}
-
-.mediaTableHeader {
-	text-align: center;
-	background: none repeat scroll 0 0 #B5B5B5;
-	border-bottom: 1px solid #000000;
-	padding: 2px;
-}
-
-.mediaTableOddRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #FFFFFFF;
-}
-
-.mediaTableEvenRow {
-	text-align: center;
-	background: none repeat scroll 0 0 #D3D3D3;
-}
-
 /** Style for the body **/
 body {
 	background-color: #E9E9E9;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
 	color: #333333;
+}
+
+h2 {
+	margin: 0px auto;
+	position: relative;
+	color: silver;
+	text-align: center;
+}
+
+/** The information header **/
+h3 {
+	margin: 0px auto;
+	position: relative;
+	color: silver;
+	text-align: center;
 }
 
 #wrapper {
@@ -43,19 +36,27 @@ body {
 /*Division for main content*/
 #main {
 	position: relative;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-right: 120px;
-	margin-left: 120px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-right: 200px;
+	margin-left: 200px;
 	background-color: white;
 	-moz-border-radius: 12px;
 	-webkit-border-radius: 12px;
 	border-radius: 12px;
+	height: 650px;
 }
 
-/** Style for the button & div **/
-#returnButton {
-	display: none
+.buttonLeft {
+	position: relative;
+	margin: 20px;
+	float: left;
+}
+
+.buttonRight {
+	position: relative;
+	margin: 20px;
+	float: right;
 }
 
 .forms {
@@ -77,9 +78,58 @@ body {
 	font-size: 0.917em;
 }
 
-/** Style for the cointainer **/
+/** Style for the container **/
 #body {
 	clear: both;
 	margin: 0 auto;
 	max-width: 534px;
+}
+
+/********** Table for buttons **********/
+table.buttons {
+	margin: 0px auto;
+	position: relative;
+} 
+
+td.buttons,tr.buttons {
+	background-color: #1047A9;
+	color: #EAEAEA;
+	text-align: center;
+	font-size: 25px;
+	width: 300px;
+	margin: 100px;
+	border-radius: 5px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+/********** Table for View Media **********/
+.mediaTable {
+	border-collapse: collapse;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	margin: 0px auto;
+	width: 90%;
+}
+
+.mediaTableHeader {
+	font-size: 16px;
+	text-align: center;
+	background: none repeat scroll 0 0 #B5B5B5;
+	border-bottom: 1px solid #000000;
+	padding: 2px;
+}
+
+.mediaTableOddRow {
+	font-size: 14px;
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+}
+
+.mediaTableEvenRow {
+	font-size: 14px;
+	text-align: center;
+	background: none repeat scroll 0 0 #D3D3D3;
 }

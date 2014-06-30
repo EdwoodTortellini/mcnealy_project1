@@ -1,3 +1,38 @@
+$(document).ready(function() {
+	// Get the hidden values
+	var hdnView = $('#hdnView')[0].value;
+	var hdnAdd = $('#hdnAdd')[0].value;
+	// Get the forms
+	var viewForm = $('#viewMediaForm');
+	var addForm = $('#addMediaForm');
+	// Get the buttons
+	var viewButton = $('#viewMediaButton');
+	var addButton = $('#addMediaButton');
+	var returnButton = $('#returnButton');
+	
+	if (hdnView == 'true') {
+		viewForm.show();
+		viewButton.hide();
+	} else {
+		viewForm.hide();
+		viewButton.show();
+	}
+	
+	if (hdnAdd == 'true') {
+		addForm.show();
+		addButton.hide();
+	} else {
+		addForm.hide();
+		addButton.show();
+	}
+	
+	if ((hdnAdd == 'true' && hdnView == 'true') || (hdnAdd == 'false' && hdnView == 'true') || (hdnAdd == 'true' && hdnView == 'false')) {
+		returnButton.show();
+	} else {
+		returnButton.hide();
+	}
+});
+
 function slideIt(id, direction) {
 	// Hide the button that slid the element and show the home button
 	$('#' + id).hide();
@@ -37,6 +72,10 @@ $('#returnButton').click(function() {
 			slideElement(this, direction);
 		}
 	});
+	
+	// Clear the information headers
+	$('#persistResult').text('');
+	$('#updateResult').text('');
 });
 
 $('#addMediaButton').click(function() {

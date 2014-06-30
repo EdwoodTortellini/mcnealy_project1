@@ -6,8 +6,8 @@ package com.mcnealy.library.WEB;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.AjaxBehaviorEvent;
 
@@ -21,7 +21,7 @@ import com.mcnealy.library.enums.MediaType;
  * 
  */
 @ManagedBean(name = "viewMedia", eager = true)
-@RequestScoped
+@SessionScoped
 public class ViewMediaController {
 
 	@EJB
@@ -33,6 +33,8 @@ public class ViewMediaController {
 	private List<Media> mediaList;
 
 	private String result;
+
+	private boolean viewMediaForm = false;
 
 	public void selectByType(AjaxBehaviorEvent event) {
 		mediaList = libraryBean.getMediaByType(type);
@@ -51,7 +53,8 @@ public class ViewMediaController {
 	public String edit() {
 		Media media = (Media) mediaTable.getRowData();
 		media.setCanEdit(true);
-		return null;
+		viewMediaForm = true;
+		return "";
 	}
 
 	public String save() {
@@ -64,6 +67,7 @@ public class ViewMediaController {
 			return "";
 		}
 		result = media.getTitle() + " has been saved.";
+		viewMediaForm = true;
 		return "";
 	}
 
@@ -140,5 +144,20 @@ public class ViewMediaController {
 	 */
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	/**
+	 * @return the viewMediaForm
+	 */
+	public boolean isViewMediaForm() {
+		return viewMediaForm;
+	}
+
+	/**
+	 * @param viewMediaForm
+	 *            the viewMediaForm to set
+	 */
+	public void setViewMediaForm(boolean viewMediaForm) {
+		this.viewMediaForm = viewMediaForm;
 	}
 }
